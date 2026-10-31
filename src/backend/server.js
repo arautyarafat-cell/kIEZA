@@ -19,8 +19,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// 🔹 Diretório de uploads absoluto e seguro
-const uploadsDir = path.join(__dirname, 'uploads');
+// 🔹 Diretório de uploads absoluto e seguro (compatível com discos persistentes e Render)
+const defaultUploadsDir = path.join(__dirname, 'uploads');
+const uploadsDir = process.env.UPLOADS_DIR || defaultUploadsDir;
 if (!fs.existsSync(uploadsDir)) {
   fs.mkdirSync(uploadsDir, { recursive: true });
 }
@@ -57,6 +58,9 @@ app.use("/api", registerRoutes);
 app.use("/api", loginRoutes);
 app.use(loginRoutes); // Suporte retrocompatível para /login direto
 app.use("/uploads", express.static(uploadsDir));
+if (uploadsDir !== defaultUploadsDir && fs.existsSync(defaultUploadsDir)) {
+  app.use("/uploads", express.static(defaultUploadsDir));
+}
 
 // 🔹 Servir frontend React em produção se pasta build existir
 const buildPath = path.join(__dirname, '../../build');
