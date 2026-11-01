@@ -28,11 +28,15 @@
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
+  "engines": {
+    "node": ">=18.0.0 <=22.x"
+  },
   "scripts": {
     "start": "node src/backend/server.js",
     "dev": "react-scripts start",
     "client": "react-scripts start",
     "server": "node src/backend/server.js",
+    "prebuild": "npm install",
     "build": "react-scripts build",
     "test": "react-scripts test --watchAll=false",
     "eject": "react-scripts eject"

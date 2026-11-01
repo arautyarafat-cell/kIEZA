@@ -106,3 +106,4 @@ No plano gratuito, o Render coloca o serviço em modo de espera após 15 minutos
 No plano gratuito do Render, o disco local é efêmero (arquivos novos enviados por upload são apagados quando o servidor reinicia).
 - As fotos já existentes do projeto continuam sempre funcionando porque estão no repositório.
 - Para uploads novos persistirem no Render a longo prazo, você pode adicionar um **Render Disk** (plano pago Starter) ou configurar um serviço de storage em nuvem (Cloudinary / Supabase Storage). Na Oracle Cloud (VPS), esse problema não existe porque o disco é permanente.
+
